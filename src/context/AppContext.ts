@@ -3,6 +3,8 @@ import { ActionsTypes, AppContext } from "../interfaces/AppContext";
 
 export const initialState: AppContext = {
   users: null,
+  posts: null,
+  todos: null,
 };
 
 export const appContext = React.createContext<{

@@ -1,16 +1,26 @@
 import { useReducer } from "react";
-import { appContext as AppContext } from "./context/AppContext";
-import { initialState } from "./context/AppContext";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { appContext as AppContext, initialState } from "./context/appContext";
 import { appRedcuer } from "./reducers";
 import UsersPage from "./pages/UsersPage";
+import ToDosPage from "./pages/ToDosPage";
+import Header from "./components/Header";
+import PostsPage from "./pages/PostsPage";
 
 function App() {
   const [state, dispatch] = useReducer(appRedcuer, initialState);
   return (
-    <AppContext.Provider value={{ state, dispatch }}>
-      <div className="App">Hello World!</div>
-      <UsersPage></UsersPage>
-    </AppContext.Provider>
+    <BrowserRouter>
+      <AppContext.Provider value={{ state, dispatch }}>
+        <Header></Header>
+        <Routes>
+          <Route path="/users" element={<UsersPage />} />
+          <Route path="/todos" element={<ToDosPage />} />
+          <Route path="/posts" element={<PostsPage />} />
+        </Routes>
+      </AppContext.Provider>
+    </BrowserRouter>
   );
 }
 

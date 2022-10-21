@@ -1,8 +1,12 @@
 import { Meta } from "./Meta";
-import { User } from "./User";
+import { Users } from "./Users";
+import { ToDos } from "./ToDos";
+import { Posts } from "./Posts";
 
 export enum ActionsTypes {
   FETCH_USERS = "FETCH_USERS",
+  FETCH_TODOS = "FETCH_TODOS",
+  FETCH_POSTS = "FETCH_POSTS",
 }
 
 export interface Action {
@@ -11,8 +15,7 @@ export interface Action {
 }
 
 export interface AppContext {
-  users: {
-    meta: Meta;
-    data: User;
-  } | null;
+  users: Users | null;
+  todos: ToDos | null;
+  posts: Posts | null;
 }
