@@ -4,7 +4,7 @@ export interface User {
   map(arg0: (user: User) => JSX.Element): import("react").ReactNode;
   email: string;
   gender: "male" | "female";
-  id: string;
+  id: number;
   name: string;
   status: "active" | "inactive";
 }

@@ -1,13 +1,14 @@
 import React from "react";
-import { ActionsTypes, AppContext } from "../interfaces/AppContext";
+import { AppContext } from "../interfaces/AppContext";
 
-export const initialState: AppContext = {
+export const initialContext: AppContext = {
   users: null,
   posts: null,
   todos: null,
+  comments: null,
 };
 
 export const appContext = React.createContext<{
-  state: AppContext;
+  context: AppContext;
   dispatch: React.Dispatch<any>;
-}>({ state: initialState, dispatch: () => {} });
+}>({ context: initialContext, dispatch: () => {} });

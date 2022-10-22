@@ -1,4 +1,4 @@
-import { ReactNode, useContext, useEffect, useRef } from "react";
+import { ReactNode, useContext, useEffect } from "react";
 import { User } from "../interfaces/Users";
 import { fetchData } from "../utils/fetchData";
 import { ActionsTypes } from "../interfaces/AppContext";
@@ -7,16 +7,16 @@ import Loading from "../components/Loading";
 import Pagination from "../components/Pagination";
 
 function UsersPage() {
-  const { state, dispatch } = useContext(appContext);
+  const { context, dispatch } = useContext(appContext);
 
   const handleFetch = async (pageNumber: number) => {
-    const users = await fetchData(pageNumber, "users");
+    const users = await fetchData("users", pageNumber);
     dispatch({ type: ActionsTypes.FETCH_USERS, payload: users });
   };
 
   const renderUsersList = () => {
-    if (!state.users) return <Loading></Loading>;
-    const usersList: ReactNode = state.users.data.map((user: User) => {
+    if (!context.users) return <Loading></Loading>;
+    const usersList: ReactNode = context.users.data.map((user: User) => {
       return (
         <div key={user.id}>
           <div>{user.id}</div>
@@ -27,13 +27,13 @@ function UsersPage() {
     return (
       <>
         {usersList}
-        <Pagination pagination={state.users.meta.pagination}></Pagination>
+        <Pagination pagination={context.users.meta.pagination}></Pagination>
       </>
     );
   };
 
   useEffect(() => {
-    if (!state.users) {
+    if (!context.users) {
       handleFetch(1);
     }
   }, []);

@@ -2,8 +2,8 @@ import { Meta } from "./Meta";
 
 export interface Post {
   map(arg0: (user: Post) => JSX.Element): import("react").ReactNode;
-  id: string;
-  user_id: string;
+  id: number;
+  user_id: number;
   title: string;
   body: string;
 }

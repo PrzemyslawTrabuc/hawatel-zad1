@@ -7,16 +7,16 @@ import Loading from "../components/Loading";
 import Pagination from "../components/Pagination";
 
 function ToDosPage() {
-  const { state, dispatch } = useContext(appContext);
+  const { context, dispatch } = useContext(appContext);
 
   const handleFetch = async (pageNumber: number) => {
-    const todos = await fetchData(pageNumber, "todos");
+    const todos = await fetchData("todos", pageNumber);
     dispatch({ type: ActionsTypes.FETCH_TODOS, payload: todos });
   };
 
   const renderTodosList = () => {
-    if (!state.todos) return <Loading></Loading>;
-    const todosList: ReactNode = state.todos.data.map((todo: ToDo) => {
+    if (!context.todos) return <Loading></Loading>;
+    const todosList: ReactNode = context.todos.data.map((todo: ToDo) => {
       return (
         <div key={todo.id}>
           <div>{todo.id}</div>
@@ -27,13 +27,13 @@ function ToDosPage() {
     return (
       <>
         {todosList}
-        <Pagination pagination={state.todos.meta.pagination}></Pagination>
+        <Pagination pagination={context.todos.meta.pagination}></Pagination>
       </>
     );
   };
 
   useEffect(() => {
-    if (!state.todos) {
+    if (!context.todos) {
       handleFetch(1);
     }
   }, []);

@@ -7,16 +7,21 @@ import Loading from "../components/Loading";
 import Pagination from "../components/Pagination";
 
 function PostsPage() {
-  const { state, dispatch } = useContext(appContext);
+  const { context, dispatch } = useContext(appContext);
+
+  const fetchCorrespondingComments = async (post_id: number) => {
+    const comments = await fetchData(`posts/${post_id}/comments`);
+    dispatch({ type: ActionsTypes.FETCH_COMMENTS, payload: comments });
+  };
 
   const handleFetch = async (pageNumber: number) => {
-    const posts = await fetchData(pageNumber, "posts");
+    const posts = await fetchData("posts", pageNumber);
     dispatch({ type: ActionsTypes.FETCH_POSTS, payload: posts });
   };
 
   const renderPostsList = () => {
-    if (!state.posts) return <Loading></Loading>;
-    const postsList: ReactNode = state.posts.data.map((posts: Post) => {
+    if (!context.posts) return <Loading></Loading>;
+    const postsList: ReactNode = context.posts.data.map((posts: Post) => {
       return (
         <div key={posts.id}>
           <div>{posts.id}</div>
@@ -27,13 +32,13 @@ function PostsPage() {
     return (
       <>
         {postsList}
-        <Pagination pagination={state.posts.meta.pagination}></Pagination>
+        <Pagination pagination={context.posts.meta.pagination}></Pagination>
       </>
     );
   };
 
   useEffect(() => {
-    if (!state.posts) {
+    if (!context.posts) {
       handleFetch(1);
     }
   }, []);

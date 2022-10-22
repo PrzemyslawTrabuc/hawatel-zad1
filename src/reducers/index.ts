@@ -12,8 +12,11 @@ export const appRedcuer = (state: AppContext, action: Action) => {
       console.log("todosAction");
       return { ...state, todos: payload };
     case "FETCH_POSTS":
-      console.log("todosAction");
+      console.log("postsAction");
       return { ...state, posts: payload };
+    case "FETCH_COMMENTS":
+      console.log("commentsAction");
+      return { ...state, comments: payload };
 
     default:
       throw new Error("No action specified");
