@@ -1,18 +1,15 @@
-import { ReactNode, useContext, useRef, useEffect } from "react";
+import { ReactNode, useContext } from "react";
 import { appContext } from "../../context/appContext";
 import { Comments, Comment } from "../../interfaces/Comments";
 import CommentCard from "./CommentCard";
 
 function CommentsCard({ post_id }: { post_id: number }) {
   const { context } = useContext(appContext);
-  const shoudlRenderLoading = useRef(true);
-
-  useEffect(() => {
-    shoudlRenderLoading.current = false;
-  });
 
   const getCorrespondingComments = (post_id: number) => {
-    if (!context.comments) return;
+    if (!context.comments) {
+      return;
+    }
     const commentsById: Array<Comment> = [];
     context.comments.forEach((comment: Comments) => {
       comment.data.forEach((c: Comment) => {
@@ -27,11 +24,7 @@ function CommentsCard({ post_id }: { post_id: number }) {
     if (comments && comments?.length < 1)
       return (
         <>
-          {shoudlRenderLoading.current ? (
-            <span className="italic">Loading comments...</span>
-          ) : (
-            <span className="italic">Brak komentarzy</span>
-          )}
+          <span className="italic">Brak komentarzy</span>
         </>
       );
     const commentsToRender: ReactNode = comments?.map((comment) => {

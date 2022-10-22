@@ -13,19 +13,19 @@ function PostsPage() {
   const { context, dispatch } = useContext(appContext);
   const shouldUpdate = useRef<boolean>(false);
 
-  const fetchCorrespondingComments = async (posts: Array<Post>) => {
-    const commentsToStore: Array<Comments> = await Promise.all(
-      await posts.map(async (post) => {
-        return await fetchData(`posts/${post.id}/comments`);
-      })
-    );
-    dispatch({ type: ActionsTypes.FETCH_COMMENTS, payload: commentsToStore });
-  };
+  // const fetchCorrespondingComments = async (posts: Array<Post>) => {
+  //   const commentsToStore: Array<Comments> = await Promise.all(
+  //     await posts.map(async (post) => {
+  //       return await fetchData(`posts/${post.id}/comments`);
+  //     })
+  //   );
+  //   dispatch({ type: ActionsTypes.FETCH_COMMENTS, payload: commentsToStore });
+  // };
 
-  const handleFetch = async (pageNumber: number) => {
-    const posts = await fetchData("posts", pageNumber);
-    dispatch({ type: ActionsTypes.FETCH_POSTS, payload: posts });
-  };
+  // const handleFetch = async (pageNumber: number) => {
+  //   const posts = await fetchData("posts", pageNumber);
+  //   dispatch({ type: ActionsTypes.FETCH_POSTS, payload: posts });
+  // };
 
   const renderPostsList = (comments: Comments | null) => {
     if (!context.posts?.data || !context.comments) return <Loading></Loading>;
@@ -46,19 +46,31 @@ function PostsPage() {
 
   useEffect(() => {
     if (!context.posts) {
+      const handleFetch = async (pageNumber: number) => {
+        const posts = await fetchData("posts", pageNumber);
+        dispatch({ type: ActionsTypes.FETCH_POSTS, payload: posts });
+      };
       handleFetch(1);
     }
-    return () => {
-      shouldUpdate.current = false;
-    };
-  }, []);
+  }, [context.posts, dispatch]);
 
   useEffect(() => {
     if (shouldUpdate.current === true && context.posts?.data) {
+      const fetchCorrespondingComments = async (posts: Array<Post>) => {
+        const commentsToStore: Array<Comments> = await Promise.all(
+          await posts.map(async (post) => {
+            return await fetchData(`posts/${post.id}/comments`);
+          })
+        );
+        dispatch({
+          type: ActionsTypes.FETCH_COMMENTS,
+          payload: commentsToStore,
+        });
+      };
       fetchCorrespondingComments(context.posts.data);
     }
     shouldUpdate.current = true;
-  }, [context.posts]);
+  }, [context.posts, dispatch]);
 
   return (
     <>

@@ -9,7 +9,7 @@ import Loading from "./Loading";
 
 function Pagination({ pagination }: Meta) {
   const { dispatch } = useContext(appContext);
-  const { limit, links, page, pages, total } = pagination;
+  const { page, pages, total } = pagination;
   const location = useLocation().pathname;
   const [isLoading, setIsLoading] = useState(false);
 
@@ -17,11 +17,10 @@ function Pagination({ pagination }: Meta) {
     if (location === "/users") return ActionsTypes.FETCH_USERS;
     if (location === "/todos") return ActionsTypes.FETCH_TODOS;
     if (location === "/posts") return ActionsTypes.FETCH_POSTS;
-    //  ActionsTypes.FETCH_COMMENTS
   };
 
   const nextPage = async () => {
-    if (page < total) {
+    if (page < total && !isLoading) {
       setIsLoading(true);
       const data = await fetchData(location, page + 1);
       dispatch({ type: getActionType(), payload: data });
@@ -30,7 +29,7 @@ function Pagination({ pagination }: Meta) {
   };
 
   const previousPage = async () => {
-    if (page > 1) {
+    if (page > 1 && !isLoading) {
       setIsLoading(true);
       const data = await fetchData(location, page - 1);
       dispatch({ type: getActionType(), payload: data });
