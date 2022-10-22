@@ -2,8 +2,6 @@ import { ReactNode, useContext, useRef, useEffect } from "react";
 import { appContext } from "../../context/appContext";
 import { Comments, Comment } from "../../interfaces/Comments";
 import CommentCard from "./CommentCard";
-import Loading from "../Loading";
-import { Meta } from "../../interfaces/Meta";
 
 function CommentsCard({ post_id }: { post_id: number }) {
   const { context } = useContext(appContext);
@@ -30,14 +28,14 @@ function CommentsCard({ post_id }: { post_id: number }) {
       return (
         <>
           {shoudlRenderLoading.current ? (
-            <Loading></Loading>
+            <span className="italic">Loading comments...</span>
           ) : (
-            <span>Brak Komentarzy</span>
+            <span className="italic">Brak komentarzy</span>
           )}
         </>
       );
     const commentsToRender: ReactNode = comments?.map((comment) => {
-      return <CommentCard commentData={comment}></CommentCard>;
+      return <CommentCard key={comment.id} commentData={comment}></CommentCard>;
     });
     return commentsToRender;
   };

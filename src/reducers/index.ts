@@ -1,6 +1,4 @@
-import { useContext } from "react";
 import { AppContext, Action } from "../interfaces/AppContext";
-import { appContext } from "../context/appContext";
 
 export const appRedcuer = (state: AppContext, action: Action) => {
   const { type, payload } = action;

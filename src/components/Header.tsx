@@ -1,18 +1,20 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Header() {
   return (
-    <ul>
-      <li>
-        <Link to="/users">Users</Link>
-      </li>
-      <li>
-        <Link to="/todos">ToDos</Link>
-      </li>
-      <li>
-        <Link to="/posts">Posts</Link>
-      </li>
-    </ul>
+    <header>
+      <ul>
+        <li>
+          <NavLink to="/users">Users</NavLink>
+        </li>
+        <li>
+          <NavLink to="/todos">ToDos</NavLink>
+        </li>
+        <li>
+          <NavLink to="/posts">Posts</NavLink>
+        </li>
+      </ul>
+    </header>
   );
 }
 

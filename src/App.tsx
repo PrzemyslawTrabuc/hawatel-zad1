@@ -1,6 +1,5 @@
 import { useReducer } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import { appContext as AppContext, initialContext } from "./context/appContext";
 import { appRedcuer } from "./reducers";
 import UsersPage from "./pages/UsersPage";
