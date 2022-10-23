@@ -20,7 +20,11 @@ function Error({ errorData }: any) {
       return (
         <div>
           {error.map((err: any) => {
-            return <div key={err.field}>{(err.field, err.message)}</div>;
+            return (
+              <div key={err.field}>
+                {err.field}: {err.message}
+              </div>
+            );
           })}
         </div>
       );

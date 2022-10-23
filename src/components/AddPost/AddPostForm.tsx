@@ -6,20 +6,21 @@ import { postPost, PostFormData } from "../../utils/postPost";
 
 const defaultFormValues: PostFormData = {
   user: "",
-  user_id: -1,
+  user_id: 0,
   title: "",
-  body: "active",
+  body: "",
 };
 
-function AddUserForm() {
+function AddPostForm() {
   const [error, setError] = useState<null | string>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState<PostFormData>(defaultFormValues);
 
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (isLoading) return;
     setError(null);
     setIsLoading(true);
-    event.preventDefault();
     const response = await postPost(formData);
     const data = await response.json();
     if (response.ok === false) {
@@ -48,10 +49,32 @@ function AddUserForm() {
         <label htmlFor="user">User:</label>
         <input
           id="user_id"
-          type="text"
+          type="number"
           placeholder="User ID"
           name="user_id"
           value={formData.user_id}
+          onChange={(e) =>
+            setFormData({ ...formData, [e.target.name]: e.target.value })
+          }
+        ></input>
+        <label htmlFor="title">Title:</label>
+        <input
+          id="title"
+          type="text"
+          placeholder="Title"
+          name="title"
+          value={formData.title}
+          onChange={(e) =>
+            setFormData({ ...formData, [e.target.name]: e.target.value })
+          }
+        ></input>
+        <label htmlFor="body">Body:</label>
+        <input
+          id="body"
+          type="text"
+          placeholder="Body"
+          name="body"
+          value={formData.body}
           onChange={(e) =>
             setFormData({ ...formData, [e.target.name]: e.target.value })
           }
@@ -66,4 +89,4 @@ function AddUserForm() {
   );
 }
 
-export default AddUserForm;
+export default AddPostForm;

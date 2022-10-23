@@ -8,24 +8,11 @@ import Loading from "../components/misc/Loading";
 import Pagination from "../components/misc/Pagination";
 import PostCard from "../components/Posts/PostCard";
 import CommentsCard from "../components/Comments/CommentsCard";
+import AddPostForm from "../components/AddPost/AddPostForm";
 
 function PostsPage() {
   const { context, dispatch } = useContext(appContext);
   const shouldUpdate = useRef<boolean>(false);
-
-  // const fetchCorrespondingComments = async (posts: Array<Post>) => {
-  //   const commentsToStore: Array<Comments> = await Promise.all(
-  //     await posts.map(async (post) => {
-  //       return await fetchData(`posts/${post.id}/comments`);
-  //     })
-  //   );
-  //   dispatch({ type: ActionsTypes.FETCH_COMMENTS, payload: commentsToStore });
-  // };
-
-  // const handleFetch = async (pageNumber: number) => {
-  //   const posts = await fetchData("posts", pageNumber);
-  //   dispatch({ type: ActionsTypes.FETCH_POSTS, payload: posts });
-  // };
 
   const renderPostsList = (comments: Comments | null) => {
     if (!context.posts?.data || !context.comments) return <Loading></Loading>;
@@ -76,6 +63,7 @@ function PostsPage() {
     <>
       <h1>POSTs</h1>
       {renderPostsList(context.comments)}
+      <AddPostForm></AddPostForm>
     </>
   );
 }

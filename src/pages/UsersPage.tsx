@@ -6,6 +6,9 @@ import { appContext } from "../context/appContext";
 import Loading from "../components/misc/Loading";
 import Pagination from "../components/misc/Pagination";
 import AddUserForm from "../components/AddUser/AddUserForm";
+import Title from "../components/misc/Title";
+import Center from "../components/misc/Center";
+import UserCard from "../components/Users/UserCard";
 
 function UsersPage() {
   const { context, dispatch } = useContext(appContext);
@@ -18,12 +21,7 @@ function UsersPage() {
   const renderUsersList = () => {
     if (!context.users) return <Loading></Loading>;
     const usersList: ReactNode = context.users.data.map((user: User) => {
-      return (
-        <div key={user.id}>
-          <div>{user.id}</div>
-          <div>{user.name}</div>
-        </div>
-      );
+      return <UserCard key={user.id} userData={user}></UserCard>;
     });
     return (
       <>
@@ -37,11 +35,13 @@ function UsersPage() {
     if (!context.users) {
       handleFetch(1);
     }
-  }, []);
+  }, [context.users]);
 
   return (
     <>
-      <h1>USERs</h1>
+      <Center>
+        <Title>Users</Title>
+      </Center>
       {renderUsersList()}
       <h2>Add User</h2>
       <AddUserForm></AddUserForm>

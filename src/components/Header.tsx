@@ -1,19 +1,35 @@
 import { NavLink } from "react-router-dom";
+import MyNavLink from "./misc/MyNavLink";
 
 function Header() {
   return (
-    <header>
-      <ul>
-        <li>
-          <NavLink to="/users">Users</NavLink>
-        </li>
-        <li>
-          <NavLink to="/todos">ToDos</NavLink>
-        </li>
-        <li>
-          <NavLink to="/posts">Posts</NavLink>
-        </li>
-      </ul>
+    <header className="bg-slate-50 shadow-sm mb-5 px-5">
+      <span className="flex sm:justify-end sm:flex-row sm:flex-end flex-col items-center">
+        <MyNavLink>
+          <NavLink
+            className={({ isActive }) => (isActive ? "text-blue-400" : "")}
+            to="/users"
+          >
+            Users
+          </NavLink>
+        </MyNavLink>
+        <MyNavLink>
+          <NavLink
+            className={({ isActive }) => (isActive ? "text-blue-400" : "")}
+            to="/todos"
+          >
+            ToDos
+          </NavLink>
+        </MyNavLink>
+        <MyNavLink>
+          <NavLink
+            className={({ isActive }) => (isActive ? "text-blue-400" : "")}
+            to="/posts"
+          >
+            Posts
+          </NavLink>
+        </MyNavLink>
+      </span>
     </header>
   );
 }

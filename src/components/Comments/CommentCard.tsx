@@ -1,9 +1,6 @@
 import { Comment } from "../../interfaces/Comments";
 
-interface CommentProps {
-  commentData: Comment;
-}
-function CommentCard({ commentData: { email } }: CommentProps) {
+function CommentCard({ commentData: { email } }: { commentData: Comment }) {
   return <div>{email}</div>;
 }
 

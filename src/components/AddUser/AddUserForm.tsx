@@ -17,9 +17,10 @@ function AddUserForm() {
   const [formData, setFormData] = useState<UserFormData>(defaultFormValues);
 
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (isLoading) return;
     setError(null);
     setIsLoading(true);
-    event.preventDefault();
     const response = await postUser(formData);
     const data = await response.json();
     if (response.ok === false) {
