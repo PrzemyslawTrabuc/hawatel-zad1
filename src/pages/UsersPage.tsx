@@ -3,8 +3,9 @@ import { User } from "../interfaces/Users";
 import { fetchData } from "../utils/fetchData";
 import { ActionsTypes } from "../interfaces/AppContext";
 import { appContext } from "../context/appContext";
-import Loading from "../components/Loading";
-import Pagination from "../components/Pagination";
+import Loading from "../components/misc/Loading";
+import Pagination from "../components/misc/Pagination";
+import AddUserForm from "../components/AddUser/AddUserForm";
 
 function UsersPage() {
   const { context, dispatch } = useContext(appContext);
@@ -42,6 +43,8 @@ function UsersPage() {
     <>
       <h1>USERs</h1>
       {renderUsersList()}
+      <h2>Add User</h2>
+      <AddUserForm></AddUserForm>
     </>
   );
 }

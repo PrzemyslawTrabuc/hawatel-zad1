@@ -3,8 +3,8 @@ import { ToDo } from "../interfaces/ToDos";
 import { fetchData } from "../utils/fetchData";
 import { ActionsTypes } from "../interfaces/AppContext";
 import { appContext } from "../context/appContext";
-import Loading from "../components/Loading";
-import Pagination from "../components/Pagination";
+import Loading from "../components/misc/Loading";
+import Pagination from "../components/misc/Pagination";
 
 function ToDosPage() {
   const { context, dispatch } = useContext(appContext);

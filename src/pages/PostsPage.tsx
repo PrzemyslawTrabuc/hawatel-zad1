@@ -4,8 +4,8 @@ import { Comments } from "../interfaces/Comments";
 import { fetchData } from "../utils/fetchData";
 import { ActionsTypes } from "../interfaces/AppContext";
 import { appContext } from "../context/appContext";
-import Loading from "../components/Loading";
-import Pagination from "../components/Pagination";
+import Loading from "../components/misc/Loading";
+import Pagination from "../components/misc/Pagination";
 import PostCard from "../components/Posts/PostCard";
 import CommentsCard from "../components/Comments/CommentsCard";
 

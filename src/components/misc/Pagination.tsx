@@ -1,9 +1,9 @@
-import { Meta } from "../interfaces/Meta";
+import { Meta } from "../../interfaces/Meta";
 import { useState } from "react";
-import { fetchData } from "../utils/fetchData";
-import { ActionsTypes } from "../interfaces/AppContext";
+import { fetchData } from "../../utils/fetchData";
+import { ActionsTypes } from "../../interfaces/AppContext";
 import { useContext } from "react";
-import { appContext } from "../context/appContext";
+import { appContext } from "../../context/appContext";
 import { useLocation } from "react-router-dom";
 import Loading from "./Loading";
 
