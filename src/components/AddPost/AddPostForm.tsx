@@ -22,8 +22,9 @@ function AddPostForm() {
     setError(null);
     setIsLoading(true);
     const response = await postPost(formData);
+    if (!response) throw error;
     const data = await response.json();
-    if (response.ok === false) {
+    if (data.ok === false) {
       setError(data.data);
     } else {
       setError("success");

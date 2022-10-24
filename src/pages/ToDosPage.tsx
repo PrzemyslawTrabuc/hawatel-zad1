@@ -1,13 +1,14 @@
-import { ReactNode, useContext, useEffect, useRef } from "react";
+import { ReactNode, useContext, useEffect, useState } from "react";
 import { ToDo } from "../interfaces/ToDos";
 import { fetchData } from "../utils/fetchData";
 import { ActionsTypes } from "../interfaces/AppContext";
-import { appContext } from "../context/appContext";
+import { appContext, dispatchContext } from "../context/appContext";
 import Loading from "../components/misc/Loading";
 import Pagination from "../components/misc/Pagination";
 
 function ToDosPage() {
-  const { context, dispatch } = useContext(appContext);
+  const { context } = useContext(appContext);
+  const { dispatch } = useContext(dispatchContext);
 
   const handleFetch = async (pageNumber: number) => {
     const todos = await fetchData("todos", pageNumber);

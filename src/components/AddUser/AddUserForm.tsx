@@ -22,6 +22,7 @@ function AddUserForm() {
     setError(null);
     setIsLoading(true);
     const response = await postUser(formData);
+    if (!response) throw error;
     const data = await response.json();
     if (response.ok === false) {
       setError(data.data);

@@ -10,5 +10,10 @@ export const initialContext: AppContext = {
 
 export const appContext = React.createContext<{
   context: AppContext;
+}>({ context: initialContext });
+
+export const dispatchContext = React.createContext<{
   dispatch: React.Dispatch<any>;
-}>({ context: initialContext, dispatch: () => {} });
+}>({
+  dispatch: () => {},
+});

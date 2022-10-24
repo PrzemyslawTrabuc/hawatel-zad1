@@ -1,9 +1,9 @@
-import { ReactNode, useContext, useEffect, useRef } from "react";
+import { ReactNode, useContext, useEffect, useRef, useState } from "react";
 import { Post } from "../interfaces/Posts";
 import { Comments } from "../interfaces/Comments";
 import { fetchData } from "../utils/fetchData";
 import { ActionsTypes } from "../interfaces/AppContext";
-import { appContext } from "../context/appContext";
+import { appContext, dispatchContext } from "../context/appContext";
 import Loading from "../components/misc/Loading";
 import Pagination from "../components/misc/Pagination";
 import PostCard from "../components/Posts/PostCard";
@@ -11,11 +11,15 @@ import CommentsCard from "../components/Comments/CommentsCard";
 import AddPostForm from "../components/AddPost/AddPostForm";
 
 function PostsPage() {
-  const { context, dispatch } = useContext(appContext);
+  const { context } = useContext(appContext);
+  const { dispatch } = useContext(dispatchContext);
   const shouldUpdate = useRef<boolean>(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const renderPostsList = (comments: Comments | null) => {
-    if (!context.posts?.data || !context.comments) return <Loading></Loading>;
+    if (!context.posts?.data || !context.comments) {
+      return <Loading></Loading>;
+    }
     const postsList: ReactNode = context.posts.data.map((post: Post) => {
       return (
         <PostCard key={post.id} postData={post}>
@@ -23,12 +27,7 @@ function PostsPage() {
         </PostCard>
       );
     });
-    return (
-      <>
-        {postsList}
-        <Pagination pagination={context.posts.meta.pagination}></Pagination>
-      </>
-    );
+    return <>{postsList}</>;
   };
 
   useEffect(() => {
@@ -44,6 +43,7 @@ function PostsPage() {
   useEffect(() => {
     if (shouldUpdate.current === true && context.posts?.data) {
       const fetchCorrespondingComments = async (posts: Array<Post>) => {
+        setIsLoading(true);
         const commentsToStore: Array<Comments> = await Promise.all(
           await posts.map(async (post) => {
             return await fetchData(`posts/${post.id}/comments`);
@@ -53,6 +53,7 @@ function PostsPage() {
           type: ActionsTypes.FETCH_COMMENTS,
           payload: commentsToStore,
         });
+        setIsLoading(false);
       };
       fetchCorrespondingComments(context.posts.data);
     }
@@ -63,7 +64,13 @@ function PostsPage() {
     <>
       <h1>POSTs</h1>
       {renderPostsList(context.comments)}
-      <AddPostForm></AddPostForm>
+      {context.posts && (
+        <>
+          <Pagination pagination={context.posts.meta.pagination}></Pagination>
+          <AddPostForm></AddPostForm>
+          {isLoading && context.comments && <Loading />}
+        </>
+      )}
     </>
   );
 }

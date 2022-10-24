@@ -27,13 +27,22 @@ function CommentsCard({ post_id }: { post_id: number }) {
           <span className="italic">Brak komentarzy</span>
         </>
       );
-    const commentsToRender: ReactNode = comments?.map((comment) => {
-      return <CommentCard key={comment.id} commentData={comment}></CommentCard>;
-    });
+    const commentsToRender: ReactNode =
+      comments &&
+      comments.map((comment) => {
+        return (
+          <CommentCard key={comment.id} commentData={comment}></CommentCard>
+        );
+      });
+
     return commentsToRender;
   };
 
-  return <div>{renderComments()}</div>;
+  return (
+    <>
+      <div>{renderComments()}</div>
+    </>
+  );
 }
 
 export default CommentsCard;
