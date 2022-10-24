@@ -1,14 +1,15 @@
-import { ReactNode, useContext, useEffect, useRef } from "react";
+import { ReactNode, useContext, useEffect } from "react";
 import { User } from "../interfaces/Users";
 import { fetchData } from "../utils/fetchData";
 import { ActionsTypes } from "../interfaces/AppContext";
 import { appContext, dispatchContext } from "../context/appContext";
 import Loading from "../components/misc/Loading";
-import Pagination from "../components/misc/Pagination";
+import Pagination from "../components/Pagination/Pagination";
 import AddUserForm from "../components/AddUser/AddUserForm";
 import Title from "../components/misc/Title";
 import Center from "../components/misc/Center";
 import UserCard from "../components/Users/UserCard";
+import Banner from "../components/misc/Banner";
 
 function UsersPage() {
   const { context } = useContext(appContext);
@@ -35,7 +36,7 @@ function UsersPage() {
   return (
     <>
       <Center>
-        <Title size="2xl">Users</Title>
+        <Banner>Users</Banner>
       </Center>
       <main className="container sm:mx-auto grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
         {renderUsersList()}
@@ -43,7 +44,7 @@ function UsersPage() {
       {context.users && (
         <>
           <Pagination pagination={context.users.meta.pagination}></Pagination>
-          <Title size="lg">Add User</Title>
+          <Title>Add User</Title>
           <AddUserForm></AddUserForm>
         </>
       )}

@@ -1,11 +1,5 @@
 import { ReactNode } from "react";
 
-export default function Title({
-  children,
-  size,
-}: {
-  children: ReactNode;
-  size: "sm" | "base" | "lg" | "xl" | "2xl";
-}) {
-  return <h1 className={`font-medium text-${size}`}>{children}</h1>;
+export default function Title({ children }: { children: ReactNode }) {
+  return <span className="font-medium text-xl">{children}</span>;
 }

@@ -5,14 +5,14 @@ import { ActionsTypes } from "../../interfaces/AppContext";
 import { useContext } from "react";
 import { dispatchContext } from "../../context/appContext";
 import { useLocation } from "react-router-dom";
-import Loading from "./Loading";
-import { isContext } from "vm";
+import Loading from "../misc/Loading";
 
 function Pagination({ pagination }: Meta) {
   const { dispatch } = useContext(dispatchContext);
   const { page, pages, total } = pagination;
   const location = useLocation().pathname;
   const [isLoading, setIsLoading] = useState(false);
+  const [pageToGo, setPageToGo] = useState<number>(0);
 
   const getActionType = () => {
     if (location === "/users") return ActionsTypes.FETCH_USERS;
@@ -38,11 +38,21 @@ function Pagination({ pagination }: Meta) {
     setIsLoading(false);
   };
 
+  const goToPage = async (pageNumber: number) => {
+    if (pageNumber > 0 && pageNumber !== page) {
+      setIsLoading(true);
+      const data = await fetchData(location, pageNumber);
+      dispatch({ type: getActionType(), payload: data });
+      setPageToGo(0);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <>
-      <div className="flex justify-center gap-2 mt-3 mb-3">
+      <div className="flex justify-center gap-2 mt-3 mb-3 content-center bg-slate-50 h-16 items-center">
         <button
-          className="bg-sky-500 text-white px-2 py-1 rounded-sm shadow-md min-w-[80px]"
+          className="text-center bg-sky-500 text-white px-2 py-1 rounded-sm shadow-md min-w-[80px]"
           onClick={previousPage}
         >
           Previous
@@ -51,19 +61,34 @@ function Pagination({ pagination }: Meta) {
           {page}/{pages}
         </div>
         <button
-          className="bg-sky-500 text-white px-2 py-1 rounded-sm shadow-md min-w-[80px]"
+          className="text-center bg-sky-500 text-white px-2 py-1 rounded-sm shadow-md min-w-[80px]"
           onClick={nextPage}
         >
           Next
         </button>
-        <input type="text" placeholder=""></input>
-        <button
-          className="bg-sky-500 text-white px-2 py-1 rounded-sm shadow-md min-w-[20px]"
-          onClick={nextPage}
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            goToPage(pageToGo);
+          }}
         >
-          Go
-        </button>
-
+          <label htmlFor="pageNumber" />
+          <input
+            type="number"
+            name="pageNumber"
+            id="pageNumber"
+            placeholder={page.toString()}
+            value={pageToGo}
+            onChange={(e) => setPageToGo(parseInt(e.target.value))}
+            className="border-2 border-sky-200 rounded-sm w-12 h-8"
+          ></input>
+          <button
+            className="text-center bg-sky-500 text-white px-2 py-1 rounded-sm shadow-md min-w-[20px] ml-1"
+            type="submit"
+          >
+            Go
+          </button>
+        </form>
         {isLoading && <Loading></Loading>}
       </div>
     </>

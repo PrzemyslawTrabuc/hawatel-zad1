@@ -5,7 +5,7 @@ import { fetchData } from "../utils/fetchData";
 import { ActionsTypes } from "../interfaces/AppContext";
 import { appContext, dispatchContext } from "../context/appContext";
 import Loading from "../components/misc/Loading";
-import Pagination from "../components/misc/Pagination";
+import Pagination from "../components/Pagination/Pagination";
 import PostCard from "../components/Posts/PostCard";
 import CommentsCard from "../components/Comments/CommentsCard";
 import AddPostForm from "../components/AddPost/AddPostForm";

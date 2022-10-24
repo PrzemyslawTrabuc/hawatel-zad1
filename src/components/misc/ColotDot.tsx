@@ -1,7 +1,7 @@
-export default function ColorDot({ color }: { color: string }) {
+export default function ColorDot() {
   return (
     <div
-      className={`relative inline-flex rounded-full h-3 w-3 bg-${color}`}
+      className={`relative inline-flex rounded-full h-3 w-3 bg-green-500`}
     ></div>
   );
 }
