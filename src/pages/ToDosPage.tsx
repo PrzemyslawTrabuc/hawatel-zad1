@@ -1,10 +1,13 @@
-import { ReactNode, useContext, useEffect, useState } from "react";
+import { ReactNode, useContext, useEffect } from "react";
 import { ToDo } from "../interfaces/ToDos";
 import { fetchData } from "../utils/fetchData";
 import { ActionsTypes } from "../interfaces/AppContext";
 import { appContext, dispatchContext } from "../context/appContext";
 import Loading from "../components/misc/Loading";
 import Pagination from "../components/Pagination/Pagination";
+import ToDoCard from "../components/ToDos/ToDoCard";
+import Banner from "../components/misc/Banner";
+import ContainerWrapper from "../components/misc/ContainerWrapper";
 
 function ToDosPage() {
   const { context } = useContext(appContext);
@@ -18,12 +21,7 @@ function ToDosPage() {
   const renderTodosList = () => {
     if (!context.todos) return <Loading></Loading>;
     const todosList: ReactNode = context.todos.data.map((todo: ToDo) => {
-      return (
-        <div key={todo.id}>
-          <div>{todo.id}</div>
-          <div>{todo.title}</div>
-        </div>
-      );
+      return <ToDoCard key={todo.id} toDoData={todo}></ToDoCard>;
     });
     return (
       <>
@@ -41,8 +39,10 @@ function ToDosPage() {
 
   return (
     <>
-      <h1>TODOs</h1>
-      {renderTodosList()}
+      <Banner>ToDOs</Banner>
+      <ContainerWrapper>
+        <main>{renderTodosList()}</main>
+      </ContainerWrapper>
     </>
   );
 }

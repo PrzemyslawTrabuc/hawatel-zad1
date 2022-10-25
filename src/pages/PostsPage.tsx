@@ -9,6 +9,8 @@ import Pagination from "../components/Pagination/Pagination";
 import PostCard from "../components/Posts/PostCard";
 import CommentsCard from "../components/Comments/CommentsCard";
 import AddPostForm from "../components/AddPost/AddPostForm";
+import Banner from "../components/misc/Banner";
+import ContainerWrapper from "../components/misc/ContainerWrapper";
 
 function PostsPage() {
   const { context } = useContext(appContext);
@@ -62,9 +64,11 @@ function PostsPage() {
 
   return (
     <>
-      <h1>POSTs</h1>
-      {renderPostsList(context.comments)}
-      {context.posts && (
+      <Banner>Posts</Banner>
+      <ContainerWrapper>
+        <main>{renderPostsList(context.comments)}</main>
+      </ContainerWrapper>
+      {context.posts && context.comments && (
         <>
           <Pagination pagination={context.posts.meta.pagination}></Pagination>
           <AddPostForm></AddPostForm>

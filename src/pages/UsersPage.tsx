@@ -10,6 +10,7 @@ import Title from "../components/misc/Title";
 import Center from "../components/misc/Center";
 import UserCard from "../components/Users/UserCard";
 import Banner from "../components/misc/Banner";
+import ContainerWrapper from "../components/misc/ContainerWrapper";
 
 function UsersPage() {
   const { context } = useContext(appContext);
@@ -35,16 +36,18 @@ function UsersPage() {
 
   return (
     <>
-      <Center>
-        <Banner>Users</Banner>
-      </Center>
-      <main className="container sm:mx-auto grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-        {renderUsersList()}
-      </main>
+      <Banner>Users</Banner>
+      <ContainerWrapper>
+        <main className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+          {renderUsersList()}
+        </main>
+      </ContainerWrapper>
       {context.users && (
         <>
           <Pagination pagination={context.users.meta.pagination}></Pagination>
-          <Title>Add User</Title>
+          <Center>
+            <Title>Add User</Title>
+          </Center>
           <AddUserForm></AddUserForm>
         </>
       )}

@@ -3,7 +3,7 @@ import MyNavLink from "./misc/MyNavLink";
 
 function Header() {
   return (
-    <header className="bg-slate-50 shadow-sm mb-5 px-5 sticky top-0">
+    <header className="bg-slate-50 shadow-sm mb-5 px-5 sticky top-0 z-10">
       <span className="flex sm:justify-end sm:flex-row sm:flex-end flex-col items-center">
         <MyNavLink>
           <NavLink

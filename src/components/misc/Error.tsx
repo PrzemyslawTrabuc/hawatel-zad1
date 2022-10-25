@@ -31,7 +31,7 @@ function Error({ errorData }: any) {
     }
   };
 
-  return <div>{renderError()}</div>;
+  return <div className="text-red-500 mb-3">{renderError()}</div>;
 }
 
 export default Error;
