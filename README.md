@@ -5,7 +5,7 @@
 - tailwindcss
 
 # Run APP
-- install: `yarn - npm i -g yarn`
+- install yarn: `npm i -g yarn`
 - run: `yarn start`
 Or use install.sh and then start.sh
 
