@@ -9,6 +9,7 @@ import { ActionsTypes } from "../../interfaces/AppContext";
 import Center from "../misc/Center";
 import ColumnWrapper from "../misc/ColumnWrapper";
 import FormContainer from "../misc/FormContainer";
+import MyButton from "../misc/MyButton";
 
 const defaultFormValues: UserFormData = {
   name: "",
@@ -43,7 +44,9 @@ function AddUserForm() {
       }
     }
     setIsLoading(false);
-    window.scrollTo(0, document.body.scrollHeight);
+    setTimeout(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    }, 300);
   };
 
   return (
@@ -108,12 +111,7 @@ function AddUserForm() {
               <option value="inactive">inactive</option>
             </select>
           </ColumnWrapper>
-          <button
-            type="submit"
-            className="text-center bg-sky-500 text-white px-2 py-1 rounded-md shadow-md ml-1"
-          >
-            Add
-          </button>
+          <MyButton type="submit">Add</MyButton>
           {isLoading && <Loading></Loading>}
         </FormContainer>
       </Center>

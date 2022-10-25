@@ -1,6 +1,6 @@
 import { ReactNode, useContext } from "react";
-import { appContext } from "../../context/appContext";
-import { Comments, Comment } from "../../interfaces/Comments";
+import { appContext } from "../../../context/appContext";
+import { Comments, Comment } from "../../../interfaces/Comments";
 import CommentCard from "./CommentCard";
 
 function CommentsCard({ post_id }: { post_id: number }) {
@@ -24,7 +24,7 @@ function CommentsCard({ post_id }: { post_id: number }) {
     if (comments && comments?.length < 1)
       return (
         <>
-          <span className="italic">Brak komentarzy</span>
+          <span className="italic">No comments</span>
         </>
       );
     const commentsToRender: ReactNode =
@@ -39,9 +39,10 @@ function CommentsCard({ post_id }: { post_id: number }) {
   };
 
   return (
-    <>
+    <div className="my-3">
+      <span className="italic">Comments:</span>
       <div>{renderComments()}</div>
-    </>
+    </div>
   );
 }
 

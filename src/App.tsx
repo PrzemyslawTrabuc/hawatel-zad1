@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import {
   appContext as AppContext,
   dispatchContext as DispatchContext,
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <BrowserRouter>
+      <HashRouter>
         <DispatchContext.Provider value={{ dispatch }}>
           <AppContext.Provider value={{ context }}>
             <Header></Header>
@@ -33,7 +33,7 @@ function App() {
             <Footer></Footer>
           </AppContext.Provider>
         </DispatchContext.Provider>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }

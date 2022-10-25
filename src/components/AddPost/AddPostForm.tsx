@@ -44,7 +44,9 @@ function AddPostForm() {
       }
     }
     setIsLoading(false);
-    window.scrollTo(0, document.body.scrollHeight);
+    setTimeout(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    }, 300);
   };
 
   return (
@@ -62,6 +64,7 @@ function AddPostForm() {
               onChange={(e) =>
                 setFormData({ ...formData, [e.target.name]: e.target.value })
               }
+              className="border-2 border-sky-200 rounded-md"
             ></input>
           </ColumnWrapper>
           <ColumnWrapper>
@@ -75,6 +78,7 @@ function AddPostForm() {
               onChange={(e) =>
                 setFormData({ ...formData, [e.target.name]: e.target.value })
               }
+              className="border-2 border-sky-200 rounded-md"
             ></input>
           </ColumnWrapper>
           <ColumnWrapper>
@@ -88,6 +92,7 @@ function AddPostForm() {
               onChange={(e) =>
                 setFormData({ ...formData, [e.target.name]: e.target.value })
               }
+              className="border-2 border-sky-200 rounded-md"
             ></input>
           </ColumnWrapper>
           <ColumnWrapper>
@@ -101,6 +106,7 @@ function AddPostForm() {
               onChange={(e) =>
                 setFormData({ ...formData, [e.target.name]: e.target.value })
               }
+              className="border-2 border-sky-200 rounded-md"
             ></input>
           </ColumnWrapper>
           <MyButton type="submit">Add</MyButton>

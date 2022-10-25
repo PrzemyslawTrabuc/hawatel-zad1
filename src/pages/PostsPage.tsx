@@ -7,7 +7,7 @@ import { appContext, dispatchContext } from "../context/appContext";
 import Loading from "../components/misc/Loading";
 import Pagination from "../components/Pagination/Pagination";
 import PostCard from "../components/Posts/PostCard";
-import CommentsCard from "../components/Comments/CommentsCard";
+import CommentsCard from "../components/Posts/Comments/CommentsCard";
 import AddPostForm from "../components/AddPost/AddPostForm";
 import Banner from "../components/misc/Banner";
 import ContainerWrapper from "../components/misc/ContainerWrapper";

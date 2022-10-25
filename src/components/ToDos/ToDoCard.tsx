@@ -9,7 +9,7 @@ export default function ToDoCard({
 }) {
   dateConvert(due_on);
   return (
-    <div className="flex flex-row bg-slate-50 shadow-sm mx-3 my-3 p-2 rounded-md justify-around text-center border-[1px] border-sky-200">
+    <article className="flex flex-row bg-slate-50 shadow-sm mx-3 my-3 p-2 rounded-md justify-around text-center border-[1px] border-sky-200">
       <span className="w-18 italic">(id: {id}) </span>
       <span className="w-18 ">User: {user_id} </span>
       <span className="w-1/2 text-md font-semibold text-left">{title} </span>
@@ -22,6 +22,6 @@ export default function ToDoCard({
           <ColorDot type="negative"></ColorDot>
         )}
       </span>
-    </div>
+    </article>
   );
 }
