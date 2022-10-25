@@ -37,7 +37,7 @@ function ToDosPage() {
       };
       handleFetch(1);
     }
-  }, [context.todos, dispatch]);
+  }, [context.todos, dispatch]); // pobranie todo ze strony 1 jeśli context todo jest pusty
 
   return (
     <>

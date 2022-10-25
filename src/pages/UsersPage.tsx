@@ -35,7 +35,7 @@ function UsersPage() {
       };
       handleFetch(1);
     }
-  }, [context.users, dispatch]);
+  }, [context.users, dispatch]); // pobranie użytkowników ze strony 1 jeśli context użytkowników jest pusty
 
   return (
     <>
