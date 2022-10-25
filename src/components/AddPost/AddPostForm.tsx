@@ -71,6 +71,7 @@ function AddPostForm() {
           <ColumnWrapper>
             <label htmlFor="user">User:</label>
             <input
+              required
               id="user"
               type="text"
               placeholder="User"
@@ -86,6 +87,7 @@ function AddPostForm() {
           <ColumnWrapper>
             <label htmlFor="user">User:</label>
             <input
+              required
               id="user_id"
               type="number"
               placeholder="User ID"
@@ -100,6 +102,7 @@ function AddPostForm() {
           <ColumnWrapper>
             <label htmlFor="title">Title:</label>
             <input
+              required
               id="title"
               type="text"
               placeholder="Title"
@@ -114,6 +117,7 @@ function AddPostForm() {
           <ColumnWrapper>
             <label htmlFor="body">Body:</label>
             <input
+              required
               id="body"
               type="text"
               placeholder="Body"

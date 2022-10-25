@@ -73,12 +73,14 @@ function AddUserForm() {
               onChange={(e) =>
                 setFormData({ ...formData, [e.target.name]: e.target.value })
               }
+              required
               className="border-2 border-sky-200 rounded-md"
             ></input>
           </ColumnWrapper>
           <ColumnWrapper>
             <label htmlFor="email">Email:</label>
             <input
+              required
               id="email"
               type="email"
               placeholder="email"
@@ -93,6 +95,7 @@ function AddUserForm() {
           <ColumnWrapper>
             <label htmlFor="gender">Gender:</label>
             <select
+              required
               name="gender"
               id="gender"
               value={formData.gender}
@@ -108,6 +111,7 @@ function AddUserForm() {
           <ColumnWrapper>
             <label htmlFor="status">Status:</label>
             <select
+              required
               id="status"
               name="status"
               value={formData.status}
