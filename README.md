@@ -1,8 +1,12 @@
-## Stack
+# Stack
 - yarn 
 - react
 - react-router
 - tailwindcss
+
+# Run APP
+- install: yarn - npm i -g yarn 
+- run: yarn start
 
 # Getting Started with Create React App
 
