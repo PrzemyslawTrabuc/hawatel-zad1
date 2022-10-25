@@ -8,6 +8,8 @@ import { useLocation } from "react-router-dom";
 import Loading from "../misc/Loading";
 import MyButton from "../misc/MyButton";
 
+// komponent paginacji
+
 function Pagination({ pagination }: Meta) {
   const { dispatch } = useContext(dispatchContext);
   const { page, total } = pagination;
@@ -19,16 +21,16 @@ function Pagination({ pagination }: Meta) {
     if (location === "/users") return ActionsTypes.FETCH_USERS;
     if (location === "/todos") return ActionsTypes.FETCH_TODOS;
     if (location === "/posts") return ActionsTypes.FETCH_POSTS;
-  };
+  }; // w zależności od linku zwróci odpowiedni typ akcji dla reducera
 
   const nextPage = async () => {
     if (page < Math.ceil(total / 12) && !isLoading) {
       setIsLoading(true);
-      const data = await fetchData(location, page + 1);
-      dispatch({ type: getActionType(), payload: data });
+      const data = await fetchData(location, page + 1); // pobranie danych
+      dispatch({ type: getActionType(), payload: data }); // zapisanie contextu
     }
     setIsLoading(false);
-  };
+  }; // funkcja odpowiadajaca za wczytanie kolejnej strony danych
 
   const previousPage = async () => {
     if (page > 1 && !isLoading) {
@@ -37,7 +39,7 @@ function Pagination({ pagination }: Meta) {
       dispatch({ type: getActionType(), payload: data });
     }
     setIsLoading(false);
-  };
+  }; // funkcja odpowiadajaca za wczytanie poprzdeniej strony danych
 
   const goToPage = async (pageNumber: number) => {
     if (
@@ -51,7 +53,9 @@ function Pagination({ pagination }: Meta) {
       setPageToGo(0);
     }
     setIsLoading(false);
-  };
+  }; // funckja pozwalająca udać się do strony podanej przez użytkownika w formularzu
+
+  // każda z funkcji zaczyna ustawineiem loading na true a kończy ustawieniem laoding na false - zaleznie tego stanu aplikacja wyświetla ekran ładowania
 
   return (
     <>

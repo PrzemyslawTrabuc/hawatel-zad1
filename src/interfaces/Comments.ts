@@ -1,5 +1,5 @@
 import { Meta } from "./Meta";
-
+// typy komenarza
 export interface Comment {
   id: number;
   post_id: number;

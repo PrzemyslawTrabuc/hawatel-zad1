@@ -12,11 +12,14 @@ import UserCard from "../components/Users/UserCard";
 import Banner from "../components/misc/Banner";
 import ContainerWrapper from "../components/misc/ContainerWrapper";
 
+// strina użytkowników
+
 function UsersPage() {
   const { context } = useContext(appContext);
   const { dispatch } = useContext(dispatchContext);
 
   const renderUsersList = () => {
+    // funckcja renderująca listę użytkowników
     if (!context.users) return <Loading></Loading>;
     const usersList: ReactNode = context.users.data.map((user: User) => {
       return <UserCard key={user.id} userData={user}></UserCard>;

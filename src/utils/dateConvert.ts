@@ -1,3 +1,4 @@
+// funkcja konwersji daty na bardziej ludzki format
 export function dateConvert(date: string) {
   const temp = new Date(date);
   const dateToReturn =

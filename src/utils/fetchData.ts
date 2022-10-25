@@ -1,5 +1,7 @@
 import { baseUrl } from "../api/gorest";
 
+// funckja pobrania danych zaleznie od przekaznego parametru endpoint
+
 export async function fetchData(endpoint: string, pageNumber?: number) {
   try {
     const response = await fetch(

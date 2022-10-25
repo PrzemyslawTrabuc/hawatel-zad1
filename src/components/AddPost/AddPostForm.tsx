@@ -11,7 +11,10 @@ import { appContext, dispatchContext } from "../../context/appContext";
 import { ActionsTypes } from "../../interfaces/AppContext";
 import { fetchData } from "../../utils/fetchData";
 
+//formularz zapewniający dodawnie postów
+
 const defaultFormValues: PostFormData = {
+  // definicja typu
   user: "",
   user_id: 0,
   title: "",
@@ -26,27 +29,35 @@ function AddPostForm() {
   const { dispatch } = useContext(dispatchContext);
 
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    // funckcja obsługująca wysłanie formularza
+    event.preventDefault(); // zapobieganie odświeżeniu strony po wysłaniu formularza
     if (isLoading) return;
     setError(null);
-    setIsLoading(true);
-    const response = await postPost(formData);
-    if (!response) throw error;
+    setIsLoading(true); //ustawia stan ładowania
+    const response = await postPost(formData); // zapytanie do bazy z prośbą o dodanie postu
+    if (!response) throw error; // jeśli brak odpowiedzi opuszcza funkcję
     const data = await response.json();
     if (response.ok === false) {
+      // jeśli odpowiedź zawiera błąd ustawia stan błędu
       setError(data.data);
+      setTimeout(() => {
+        window.scrollTo(0, document.body.scrollHeight); // przwija stronę w dół aby użytkownik zobaczył błąd lub sukces
+      }, 300);
     } else {
+      // jeśli zapytanie zwróci sukces, czyści formularz
       setError("success");
       setFormData(defaultFormValues);
       if (context.posts?.meta.pagination.page === 1) {
+        // jeśli użytkownik znajduje się na 1 stronie od razu pobiera nowe dane aby klient mógł zobaczyć dodane dane
+        //jeśli użytkownik znaduje się w
         const posts = await fetchData("posts", 1);
         dispatch({ type: ActionsTypes.FETCH_POSTS, payload: posts });
+        setTimeout(() => {
+          window.scrollTo(0, 0); // przewija stronę w górę aby użytkownik zobaczył błąd lub sukces
+        }, 300);
       }
     }
-    setIsLoading(false);
-    setTimeout(() => {
-      window.scrollTo(0, document.body.scrollHeight);
-    }, 300);
+    setIsLoading(false); // czyści stan łaodwania
   };
 
   return (
@@ -61,8 +72,9 @@ function AddPostForm() {
               placeholder="User"
               name="user"
               value={formData.user}
-              onChange={(e) =>
-                setFormData({ ...formData, [e.target.name]: e.target.value })
+              onChange={
+                (e) =>
+                  setFormData({ ...formData, [e.target.name]: e.target.value }) // ustawienie wartości stany gdy uzytkownik wprowadza dane
               }
               className="border-2 border-sky-200 rounded-md"
             ></input>

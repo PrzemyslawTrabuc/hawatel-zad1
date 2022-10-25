@@ -5,6 +5,7 @@ export interface UserFormData {
   status: "active" | "inactive";
 }
 
+// funckja wysłania zapytania z dodaniem użytkownika do bazy
 export async function postUser(data: UserFormData) {
   try {
     const response = await fetch("https://gorest.co.in/public/v1/users", {

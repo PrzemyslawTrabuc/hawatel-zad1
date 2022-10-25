@@ -2,6 +2,8 @@ import { User } from "../../interfaces/Users";
 import Title from "../misc/Title";
 import ColorDot from "../misc/ColotDot";
 
+// komponent renderujący kartę użytkownika
+
 export default function UserCard({
   userData: { id, name, email, gender, status },
 }: {

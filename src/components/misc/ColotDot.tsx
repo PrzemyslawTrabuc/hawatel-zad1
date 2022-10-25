@@ -1,3 +1,4 @@
+// komponent odpowiedizalny za wyświeltnie kolorwej kropki zależnie o parametru type
 export default function ColorDot({ type }: { type?: "negative" | "neutral" }) {
   if (type === "negative")
     return (

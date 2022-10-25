@@ -1,7 +1,9 @@
+// komponent wyświetlający błąd zwrócony przez API
 function Error({ errorData }: any) {
   const handleError = () => {
     let error;
     try {
+      // logika wyświetlania pola i błędu z nim związanego w zależności od typu błędu, jeśli błąd zawiera tylko tekst zwróci od razu tekst
       error = errorData.map((err: any) => {
         return { field: err.field, message: err.message };
       });

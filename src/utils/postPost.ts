@@ -5,6 +5,8 @@ export interface PostFormData {
   body: string;
 }
 
+// funckja wysłania zapytania z dodaniem postu do bazy
+
 export async function postPost(data: PostFormData) {
   try {
     const response = await fetch("https://gorest.co.in/public/v1/posts", {

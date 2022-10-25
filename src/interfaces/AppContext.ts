@@ -1,8 +1,9 @@
-import { Meta } from "./Meta";
 import { Users } from "./Users";
 import { ToDos } from "./ToDos";
 import { Posts } from "./Posts";
 import { Comments } from "./Comments";
+
+// typy contextu aplikacji i typy akcji dla reducera
 
 export enum ActionsTypes {
   FETCH_USERS = "FETCH_USERS",

@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
 
+// komponent własnego przycisku
+
 export default function Button({
   children,
   type,

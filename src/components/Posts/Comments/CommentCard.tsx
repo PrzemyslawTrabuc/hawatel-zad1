@@ -1,5 +1,7 @@
 import { Comment } from "../../../interfaces/Comments";
 
+// komponent renderujący kartę komentarza
+
 function CommentCard({
   commentData: { email, id, body },
 }: {
@@ -9,7 +11,7 @@ function CommentCard({
     <article className="bg-sky-400 text-white shadow-md rounded-md my-2 p-2">
       <div className="font-semibold">{id}:</div>
       <span>{body}</span>
-      <div className="text-right">~ {email}</div>
+      <div className="text-right italic">~ {email}</div>
     </article>
   );
 }

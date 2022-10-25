@@ -1,5 +1,6 @@
 import { AppContext, Action } from "../interfaces/AppContext";
 
+// reducer dodany do hooka useReducer, umożliwiający zmiane contextu zależnie od akcji przekazanej do metody dispatch
 export const appRedcuer = (state: AppContext, action: Action) => {
   const { type, payload } = action;
   switch (type) {

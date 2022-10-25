@@ -1,5 +1,7 @@
 import { Meta } from "./Meta";
 
+//typy todo
+
 export interface ToDo {
   map(arg0: (user: ToDo) => JSX.Element): import("react").ReactNode;
   id: number;

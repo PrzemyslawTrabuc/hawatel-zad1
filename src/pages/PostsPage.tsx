@@ -12,6 +12,8 @@ import AddPostForm from "../components/AddPost/AddPostForm";
 import Banner from "../components/misc/Banner";
 import ContainerWrapper from "../components/misc/ContainerWrapper";
 
+//strona Postów
+
 function PostsPage() {
   const { context } = useContext(appContext);
   const { dispatch } = useContext(dispatchContext);
@@ -19,8 +21,9 @@ function PostsPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   const renderPostsList = (comments: Comments | null) => {
+    // renderowanie listy postów na podstawie danych z context
     if (!context.posts?.data || !context.comments) {
-      return <Loading></Loading>;
+      return <Loading></Loading>; // jeśli braj posów lub komenarzy zwraca loading;
     }
     const postsList: ReactNode = context.posts.data.map((post: Post) => {
       return (
@@ -40,7 +43,7 @@ function PostsPage() {
       };
       handleFetch(1);
     }
-  }, [context.posts, dispatch]);
+  }, [context.posts, dispatch]); // pobranie postów ze strony 1 jeśli context postów jest pusty
 
   useEffect(() => {
     if (shouldUpdate.current === true && context.posts?.data) {
@@ -60,7 +63,7 @@ function PostsPage() {
       fetchCorrespondingComments(context.posts.data);
     }
     shouldUpdate.current = true;
-  }, [context.posts, dispatch]);
+  }, [context.posts, dispatch]); // pobranie komentrzy dla id każdego postu w pętli i zapisanie ich w context komentarzy - funkcja wykona się z każdą zmianą zapisanych postów
 
   return (
     <>

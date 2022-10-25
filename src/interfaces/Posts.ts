@@ -1,5 +1,5 @@
 import { Meta } from "./Meta";
-
+// typy posta
 export interface Post {
   map(arg0: (user: Post) => JSX.Element): import("react").ReactNode;
   id: number;

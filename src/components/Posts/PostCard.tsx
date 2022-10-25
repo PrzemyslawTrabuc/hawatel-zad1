@@ -3,6 +3,7 @@ import { Post } from "../../interfaces/Posts";
 import Center from "../misc/Center";
 import Title from "../misc/Title";
 
+// komponent renderujący kartę postu
 interface PostProps {
   postData: Post;
   children?: ReactElement;

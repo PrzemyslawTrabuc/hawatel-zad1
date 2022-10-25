@@ -11,6 +11,8 @@ import ColumnWrapper from "../misc/ColumnWrapper";
 import FormContainer from "../misc/FormContainer";
 import MyButton from "../misc/MyButton";
 
+//formularz zapewniający dodawnie użytkowników - logika taka sama jak w przypadku postów
+
 const defaultFormValues: UserFormData = {
   name: "",
   gender: "female",
@@ -35,18 +37,21 @@ function AddUserForm() {
     const data = await response.json();
     if (response.ok === false) {
       setError(data.data);
+      setTimeout(() => {
+        window.scrollTo(0, document.body.scrollHeight);
+      }, 300);
     } else {
       setError("success");
       setFormData(defaultFormValues);
       if (context.users?.meta.pagination.page === 1) {
         const users = await fetchData("users", 1);
         dispatch({ type: ActionsTypes.FETCH_USERS, payload: users });
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+        }, 300);
       }
     }
     setIsLoading(false);
-    setTimeout(() => {
-      window.scrollTo(0, document.body.scrollHeight);
-    }, 300);
   };
 
   return (

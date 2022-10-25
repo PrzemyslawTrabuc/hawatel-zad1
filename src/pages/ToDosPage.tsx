@@ -9,17 +9,15 @@ import ToDoCard from "../components/ToDos/ToDoCard";
 import Banner from "../components/misc/Banner";
 import ContainerWrapper from "../components/misc/ContainerWrapper";
 
+// strona todos
+
 function ToDosPage() {
   const { context } = useContext(appContext);
   const { dispatch } = useContext(dispatchContext);
 
-  const handleFetch = async (pageNumber: number) => {
-    const todos = await fetchData("todos", pageNumber);
-    dispatch({ type: ActionsTypes.FETCH_TODOS, payload: todos });
-  };
-
   const renderTodosList = () => {
-    if (!context.todos) return <Loading></Loading>;
+    // funckja renderująca liste todos
+    if (!context.todos) return <Loading></Loading>; // jesli brak todo zwraca loading;
     const todosList: ReactNode = context.todos.data.map((todo: ToDo) => {
       return <ToDoCard key={todo.id} toDoData={todo}></ToDoCard>;
     });
@@ -33,9 +31,13 @@ function ToDosPage() {
 
   useEffect(() => {
     if (!context.todos) {
+      const handleFetch = async (pageNumber: number) => {
+        const todos = await fetchData("todos", pageNumber);
+        dispatch({ type: ActionsTypes.FETCH_TODOS, payload: todos });
+      };
       handleFetch(1);
     }
-  }, []);
+  }, [context.todos, dispatch]);
 
   return (
     <>

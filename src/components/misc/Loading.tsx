@@ -1,5 +1,6 @@
 import Center from "./Center";
 
+// komponent okna ładowania
 function Loading() {
   return (
     <>

@@ -14,7 +14,8 @@ import Footer from "./components/Footer";
 
 function App() {
   const [context, dispatch] = useReducer(appRedcuer, initialContext);
-
+  // hook useReducer zapewniający mechniake podobną do biblioteki,
+  // Redux aby przechowywać stan aplikacji jego parametry to własny reducer i początkowe wartości stanu aplikacji w context oraz funkcję dispatch pozwalająca znmienic ten context za pomocą reducera reducers/index.ts
   return (
     <div className="flex flex-col min-h-screen">
       <HashRouter>

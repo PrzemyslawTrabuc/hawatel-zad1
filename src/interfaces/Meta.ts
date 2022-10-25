@@ -1,3 +1,4 @@
+//typy Meta danych
 export interface Meta {
   pagination: {
     total: number;

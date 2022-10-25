@@ -1,5 +1,6 @@
 import { Meta } from "./Meta";
 
+// typy użytkownika
 export interface User {
   map(arg0: (user: User) => JSX.Element): import("react").ReactNode;
   email: string;
