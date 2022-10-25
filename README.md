@@ -8,6 +8,7 @@
 - install yarn: `npm i -g yarn`
 - run: `yarn start`
 - Or use install.sh and then start.sh
+ Alternative try to run `npm install` then `npm start'
 
 # Getting Started with Create React App
 
