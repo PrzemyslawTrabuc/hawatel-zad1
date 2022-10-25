@@ -28,6 +28,9 @@ function Pagination({ pagination }: Meta) {
       setIsLoading(true);
       const data = await fetchData(location, page + 1); // pobranie danych
       dispatch({ type: getActionType(), payload: data }); // zapisanie contextu
+      setTimeout(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" }); // przewija stronę w górę aby użytkownik zobaczył błąd lub sukces
+      }, 300);
     }
     setIsLoading(false);
   }; // funkcja odpowiadajaca za wczytanie kolejnej strony danych
@@ -37,6 +40,9 @@ function Pagination({ pagination }: Meta) {
       setIsLoading(true);
       const data = await fetchData(location, page - 1);
       dispatch({ type: getActionType(), payload: data });
+      setTimeout(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" }); // przewija stronę w górę aby użytkownik zobaczył błąd lub sukces
+      }, 300);
     }
     setIsLoading(false);
   }; // funkcja odpowiadajaca za wczytanie poprzdeniej strony danych
@@ -51,6 +57,9 @@ function Pagination({ pagination }: Meta) {
       const data = await fetchData(location, pageNumber);
       dispatch({ type: getActionType(), payload: data });
       setPageToGo(0);
+      setTimeout(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" }); // przewija stronę w górę aby użytkownik zobaczył błąd lub sukces
+      }, 300);
     }
     setIsLoading(false);
   }; // funckja pozwalająca udać się do strony podanej przez użytkownika w formularzu
