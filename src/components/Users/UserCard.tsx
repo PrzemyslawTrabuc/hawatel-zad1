@@ -10,7 +10,7 @@ export default function UserCard({
   userData: User;
 }) {
   return (
-    <article className="mx-2 flex flex-col jusitfy-around bg-slate-50 p-5 rounded-md shadow-sm border border-sky-200">
+    <article className="mx-2 flex flex-col jusitfy-around bg-slate-50 p-5 rounded-md shadow-sm border my-3 border-sky-200">
       <span>
         <span className="text-sm italic">(id: {id}) </span>
         <Title>
