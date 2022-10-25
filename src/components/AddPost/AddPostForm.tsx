@@ -41,7 +41,11 @@ function AddPostForm() {
       // jeśli odpowiedź zawiera błąd ustawia stan błędu
       setError(data.data);
       setTimeout(() => {
-        window.scrollTo(0, document.body.scrollHeight); // przwija stronę w dół aby użytkownik zobaczył błąd lub sukces
+        window.scrollTo({
+          left: 0,
+          top: document.body.scrollHeight,
+          behavior: "smooth",
+        }); // przwija stronę w dół aby użytkownik zobaczył błąd lub sukces
       }, 300);
     } else {
       // jeśli zapytanie zwróci sukces, czyści formularz
@@ -53,7 +57,7 @@ function AddPostForm() {
         const posts = await fetchData("posts", 1);
         dispatch({ type: ActionsTypes.FETCH_POSTS, payload: posts });
         setTimeout(() => {
-          window.scrollTo(0, 0); // przewija stronę w górę aby użytkownik zobaczył błąd lub sukces
+          window.scrollTo({ top: 0, left: 0, behavior: "smooth" }); // przewija stronę w górę aby użytkownik zobaczył błąd lub sukces
         }, 300);
       }
     }

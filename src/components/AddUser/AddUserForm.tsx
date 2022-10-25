@@ -38,7 +38,11 @@ function AddUserForm() {
     if (response.ok === false) {
       setError(data.data);
       setTimeout(() => {
-        window.scrollTo(0, document.body.scrollHeight);
+        window.scrollTo({
+          left: 0,
+          top: document.body.scrollHeight,
+          behavior: "smooth",
+        });
       }, 300);
     } else {
       setError("success");
@@ -47,7 +51,7 @@ function AddUserForm() {
         const users = await fetchData("users", 1);
         dispatch({ type: ActionsTypes.FETCH_USERS, payload: users });
         setTimeout(() => {
-          window.scrollTo(0, 0);
+          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
         }, 300);
       }
     }
