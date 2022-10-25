@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/hawatel-zad1/static/css/main.398e76a4.css",
-    "main.js": "/hawatel-zad1/static/js/main.e5b0b436.js",
+    "main.css": "/hawatel-zad1/static/css/main.1db6cb2c.css",
+    "main.js": "/hawatel-zad1/static/js/main.c1f08b91.js",
     "static/js/787.28cb0dcd.chunk.js": "/hawatel-zad1/static/js/787.28cb0dcd.chunk.js",
     "index.html": "/hawatel-zad1/index.html",
-    "main.398e76a4.css.map": "/hawatel-zad1/static/css/main.398e76a4.css.map",
-    "main.e5b0b436.js.map": "/hawatel-zad1/static/js/main.e5b0b436.js.map",
+    "main.1db6cb2c.css.map": "/hawatel-zad1/static/css/main.1db6cb2c.css.map",
+    "main.c1f08b91.js.map": "/hawatel-zad1/static/js/main.c1f08b91.js.map",
     "787.28cb0dcd.chunk.js.map": "/hawatel-zad1/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.398e76a4.css",
-    "static/js/main.e5b0b436.js"
+    "static/css/main.1db6cb2c.css",
+    "static/js/main.c1f08b91.js"
   ]
 }
