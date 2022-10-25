@@ -14,7 +14,7 @@ function PostCard({
   children,
 }: PostProps) {
   return (
-    <article className="flex flex-col justify-around bg-slate-50 my-3 p-5 rounded-md border-[1px] border-sky-200 shadow-sm">
+    <article className="flex flex-col justify-around bg-slate-50 my-3 p-5 mx-2 rounded-md border-[1px] border-sky-200 shadow-sm">
       <div className="flex flex-row justify-betweeen">
         <Center>
           <Title>
