@@ -1,3 +1,15 @@
+# Stack
+- yarn 
+- react
+- react-router
+- tailwindcss
+
+# Run APP
+- install yarn: `npm i -g yarn`
+- run: `yarn start`
+- Or use install.sh and then start.sh
+- Alternative try to run `npm install` then `npm start'
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
